@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen({super.key});
+  const StartScreen(this.startQuiz, {super.key});
 
-  void onPressed(){
-
-  }
+  final void Function() startQuiz;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -24,7 +22,7 @@ class StartScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10,),
-            ElevatedButton(onPressed: onPressed, child: const Text('Start quiz'))
+            ElevatedButton(onPressed: startQuiz, child: const Text('Start quiz'))
         ],
       ),
     );

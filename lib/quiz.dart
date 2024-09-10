@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'start_screen.dart';
+import 'question_screen.dart';
 
 class Quiz extends StatefulWidget{
+  const Quiz({super.key});
+
   @override
   State<Quiz> createState() {
     return _QuizState();
@@ -9,6 +12,20 @@ class Quiz extends StatefulWidget{
 }
 
 class _QuizState extends State<Quiz>{
+  Widget? activeScreen;
+
+  @override
+  void initState() {
+    super.initState();
+    activeScreen = StartScreen(switchScreen);
+  }
+
+  void switchScreen(){
+    setState(() {
+      activeScreen = const QuestionScreen();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -22,7 +39,7 @@ class _QuizState extends State<Quiz>{
             end: Alignment.bottomRight
         ),
       ),
-      child: const StartScreen(),
+      child: activeScreen,
     );
   }
 }
