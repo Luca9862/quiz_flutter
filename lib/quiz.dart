@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'start_screen.dart';
 import 'question_screen.dart';
 import 'data/questions.dart';
+import 'results_screen.dart';
 
 class Quiz extends StatefulWidget{
   const Quiz({super.key});
@@ -27,10 +28,17 @@ class _QuizState extends State<Quiz>{
 
     if(selectedAnswers.length == questions.length){
       setState(() {
-        activeScreen = StartScreen(switchScreen);
+        activeScreen = ResultsScreen(answersList: selectedAnswers, onRestart: restartQuiz,);
         selectedAnswers = [];
       });
     }
+  }
+
+  void restartQuiz() {
+    setState(() {
+      activeScreen = QuestionScreen(onSelectAnswer: chooseAnswer);
+      selectedAnswers = [];
+    });
   }
 
   void switchScreen() {
